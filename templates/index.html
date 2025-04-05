@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoVoice Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gradient-to-br from-emerald-50 to-teal-50 min-h-screen font-['Inter']">
+    <div class="flex min-h-screen relative overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute -top-24 -left-24 w-64 h-64 bg-teal-100 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-emerald-100 rounded-full filter blur-3xl opacity-30 animate-pulse delay-1000"></div>
+
+        <!-- Left Side - Transcript -->
+        <div class="w-1/2 backdrop-blur-sm bg-white/80 p-8 border-r border-gray-200/50 overflow-y-auto relative z-10">
+            <div class="flex items-center mb-6">
+                <i class="fas fa-leaf text-emerald-500 text-2xl mr-3"></i>
+                <h2 class="text-2xl font-bold text-gray-800">Conversation History</h2>
+            </div>
+            <div id="transcript" class="space-y-4 pr-4">
+                <!-- Transcript entries will be added here -->
+            </div>
+        </div>
+
+        <!-- Right Side - Voice Assistant -->
+        <div class="w-1/2 backdrop-blur-sm bg-white/80 p-8 relative z-10">
+            <div class="flex items-center mb-6">
+                <i class="fas fa-robot text-teal-500 text-2xl mr-3"></i>
+                <h2 class="text-2xl font-bold text-gray-800">EcoVoice Assistant</h2>
+            </div>
+            
+            <!-- Voice Controls -->
+            <div class="flex flex-col items-center justify-center space-y-6 mb-12">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full opacity-75 blur-lg group-hover:opacity-100 animate-pulse transition-opacity"></div>
+                    <button id="voice-input" class="relative bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full w-20 h-20 flex items-center justify-center hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                        <i class="fas fa-microphone text-2xl"></i>
+                    </button>
+                </div>
+                <div id="recording-status" class="hidden text-gray-600 bg-white/90 px-4 py-2 rounded-full shadow-sm">
+                    <i class="fas fa-circle text-red-500 animate-pulse mr-2"></i>
+                    Recording...
+                </div>
+            </div>
+
+            <!-- Status Display -->
+            <div class="text-center mb-8 bg-white/60 rounded-xl p-6 shadow-sm">
+                <p id="status-text" class="text-gray-700 text-lg">Click the microphone to start speaking</p>
+            </div>
+
+            <!-- Last Command Display -->
+            <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6 shadow-sm border border-emerald-100/50">
+                <div class="flex items-center mb-3">
+                    <i class="fas fa-history text-teal-500 mr-2"></i>
+                    <h3 class="text-sm font-semibold text-gray-700">Last Command</h3>
+                </div>
+                <p id="last-command" class="text-gray-800 italic">No commands yet</p>
+            </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
